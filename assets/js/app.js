@@ -12,7 +12,7 @@ var questionbank = [
 },
 
 {
-	question: 'What as the color of the hulk in his original debut?',
+	question: 'What is the color of the hulk in his original debut?',
 	answers: ["Green duh!","Gray","Red"],
 	correctAnswer: "Gray",
 },
@@ -37,7 +37,7 @@ var questionbank = [
 }];
 
 var wins = 0;
-
+var losses = 0;
 var user = 0;
 
 var getRandom = function(min, max)
@@ -126,32 +126,35 @@ var game = {
 
 			if(wins<10)
 			{
-				console.log(wins);
-				game.Winner();
-				game.nextRound();
+				game.stopClock();
+				$('#truth').html("CORRECT! THE ANSWER IS " + correct);
+				setTimeout(function(){game.nextRound();},3000);
 			}
 		}
 		else
 		{
-				game.gameOver();
+				losses++;
+				game.stopClock();
+				$('#truth').html("FALSE! THE ANSWER IS " + correct);
+				setTimeout(function(){game.nextRound();},3000);
 		}
 	},
 
-	Winner:function(){
-		$('#Question').html("YOU WIN!");
-	},
-
 	nextRound:function(){
+		$('#truth').empty();
+		game.counter = 30;
+		game.start();
 		game.assign();
 		game.UserChoice();
 	},
 
-	reset:function(){
-		counter = 10;
+	stopClock:function(){
+		clearInterval(timer);
 	},
 
 	gameOver:function(){
 		$('#Question').html("Wins:" + wins);
+		$('#Question').append("<br>Losses:" + losses);
 		$('#Answer1').remove();
 		$('#Answer2').remove();
 		$('#Answer3').remove();
