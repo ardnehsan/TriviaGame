@@ -54,9 +54,10 @@ var game = {
 		user = 0;
 		timer = setInterval(game.countdown,1000);
 		$('#begin').remove();
+		
 		game.assign();
 		game.UserChoice();
-
+		
 	},
 
 	//starts the countdown of the timer
@@ -89,27 +90,26 @@ var game = {
 	UserChoice:function()
 	{
 
-			$('#Answer1').click(function() {
+			$('#Answer1').off().click(function() {
   			  user = $(this).text();
   			  game.checkWin(user);
   			});
 
-			$('#Answer2').click(function() {
+			$('#Answer2').off().click(function() {
 			   	user = $(this).text();
 			    game.checkWin(user);
 			});
 
 
-			$('#Answer3').click(function() {
+			$('#Answer3').off().click(function() {
 			    user = $(this).text();
 			    game.checkWin(user);
 
 				});
 
 
-			$('#Answer4').click(function() {
+			$('#Answer4').off().click(function() {
 			    user = $(this).text();
-
 			    game.checkWin(user);
 			});
 	},
@@ -119,10 +119,14 @@ var game = {
 		console.log(x);
 		correct = questionbank[random].correctAnswer;
 		if(x === correct)
+
 		{
+
+			wins++;
+
 			if(wins<10)
 			{
-				wins++;
+				console.log(wins);
 				game.Winner();
 				game.nextRound();
 			}
@@ -140,6 +144,10 @@ var game = {
 	nextRound:function(){
 		game.assign();
 		game.UserChoice();
+	},
+
+	reset:function(){
+		counter = 10;
 	},
 
 	gameOver:function(){

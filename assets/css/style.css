@@ -1,0 +1,25 @@
+@font-face {
+	font-family: 'Action_Man';
+	src: url('../fonts/Action_Man.ttf') format('truetype');	
+}
+
+.container{
+	font-family: 'Action_Man';
+}	
+
+.col-lg-4 img{
+		width: 75%;
+		height: auto;
+	}
+
+body{
+
+	 background: url(../img/deadpoolback.jpg) center fixed;
+    
+}
+
+@media (max-width: 1200px) {
+	.col-lg-4{
+		width:50%;
+	}
+}
